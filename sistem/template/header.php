@@ -1,9 +1,4 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php require_once '../../core/init.php'; ?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -117,7 +112,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   						</li>
   						<li class="m_2"><a href="#"><i class="fa fa-bell-o"></i> Updates <span class="label label-info">42</span></a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-envelope-o"></i> Messages <span class="label label-success">42</span></a></li>
-  						<li class="m_2"><a href="#"><i class="fa fa-tasks"></i> Tasks <span class="label label-danger">42</span></a></li>
   						<li><a href="#"><i class="fa fa-comments"></i> Comments <span class="label label-warning">42</span></a></li>
   						<li class="dropdown-menu-header text-center">
   							<strong>Settings</strong>
@@ -125,9 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   						<li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
-  						<li class="m_2"><a href="#"><i class="fa fa-file"></i> Projects <span class="label label-primary">42</span></a></li>
   						<li class="divider"></li>
-  						<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Lock Profile</a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
   	        		</ul>
   	      		</li>
@@ -176,11 +168,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                               <!-- /.nav-second-level -->
                           </li>
                           <li>
-                              <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>Css<span class="fa arrow"></span></a>
+                              <a href="#"><i class="fa fa-sitemap fa-fw nav_icon"></i>User<span class="fa arrow"></span></a>
                               <ul class="nav nav-second-level">
-                                  <li>
-                                      <a href="media.html">Media</a>
-                                  </li>
+
                                   <li>
                                       <a href="login.php">Login</a>
                                   </li>

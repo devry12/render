@@ -1,4 +1,4 @@
-<?php require_once 'header.php'; ?>
+<?php require_once '../../template/header.php'; ?>
 
         <div id="page-wrapper">
         <div class="graphs">
@@ -313,18 +313,8 @@ var detail = new Rickshaw.Graph.HoverDetail({
 		   <div class="clearfix"> </div>
 		   </div>
 		  </div>
-		  <div class="cloud">
-			<div class="grid-date">
-				<div class="date">
-					<p class="date-in">New York</p>
-					<span class="date-on">°F °C </span>
-					<div class="clearfix"> </div>
-				</div>
-				<h4>30°<i class="fa fa-cloud-upload"> </i></h4>
-			</div>
-			<p class="monday">Monday 10 July</p>
-		  </div>
+
 		</div>
 		<div class="clearfix"> </div>
 	    </div>
-	<?php require_once 'footer.php'; ?>
+	<?php require_once '../../template/footer.php'; ?>

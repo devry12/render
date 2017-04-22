@@ -1,4 +1,4 @@
-<?php require_once 'header.php'; ?>
+<?php require_once '../../template/header.php'; ?>
 
         <div id="page-wrapper">
         <div class="graphs">
@@ -62,4 +62,4 @@
 
   </div>
   </div>
-  <?php require_once 'footer.php'; ?>
+<?php require_once '../../template/footer.php'; ?>
