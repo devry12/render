@@ -1,0 +1,54 @@
+#head{
+  margin-left: 48%;
+  margin-top: 20px;
+  font-size: 20px;
+}
+#kaki{
+ margin-left: 35%;
+ margin-top: 20px;
+  background-color: white;
+  list-style-type: none;
+}
+#kaki a{
+  color: black;
+    text-decoration: none;
+    float: left;
+    margin-left: 20px;
+}
+
+#kaki a:hover{
+    color: #3273dc;
+    text-decoration: none;
+    float: left;
+    margin-left: 20px;
+}
+.badan{
+  background: #F2F2F2;
+}
+
+.nav{
+  margin-top: 3px;
+}
+.img{
+  margin-top: 20px;
+  width: 400px;
+}
+.theme{
+  margin-left: 40%;
+}
+
+.theme .harga{
+
+  margin-left: 27px;
+}
+
+#garis{
+margin-left: 32%;
+margin-top: 1px;
+margin-bottom: 1px;
+width: 40%;
+height: 3px;
+border-radius: 5px;
+background-color: #3273dc;
+
+}
