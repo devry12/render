@@ -41,8 +41,8 @@
 								</div>
 
                 <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile" accept="image/*">
+                  <label for="exampleInputFile">Image</label>
+                    <input type="file" accept="image/*">
                 </div>
                 <div class="panel-footer">
               <div class="row">
