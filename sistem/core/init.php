@@ -1,2 +1,7 @@
-<?php require_once 'db.php'; ?>
-<?php require_once 'function.php'; ?>
+<?php
+
+  session_start();
+require_once 'db.php';
+require_once 'function/function.php';
+require_once 'function/user.php';
+ ?>

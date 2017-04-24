@@ -1,4 +1,5 @@
 <?php require_once '../../core/init.php'; ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -40,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="index.php">Panel</a>
+                  <a class="navbar-brand" href="../../../index.php">Home</a>
               </div>
               <!-- /.navbar-header -->
               <ul class="nav navbar-nav navbar-right">
@@ -116,11 +117,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   						<li class="dropdown-menu-header text-center">
   							<strong>Settings</strong>
   						</li>
-  						<li class="m_2"><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+  						<li class="m_2"><a href="profile.php"><i class="fa fa-user"></i> Profile</a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-wrench"></i> Settings</a></li>
   						<li class="m_2"><a href="#"><i class="fa fa-usd"></i> Payments <span class="label label-default">42</span></a></li>
   						<li class="divider"></li>
-  						<li class="m_2"><a href="#"><i class="fa fa-lock"></i> Logout</a></li>
+  						<li class="m_2"><a href="user/logout.php"><i class="fa fa-lock"></i> Logout</a></li>
   	        		</ul>
   	      		</li>
   			</ul>
@@ -172,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                               <ul class="nav nav-second-level">
 
                                   <li>
-                                      <a href="login.php">Login</a>
+                                      <a href="user/login.php">Login</a>
                                   </li>
                               </ul>
                               <!-- /.nav-second-level -->

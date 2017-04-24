@@ -1,67 +1,110 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
+<?php require_once '../../core/init.php';
+
+
+//validation
+
+if (isset($_POST["submit"])) {
+	$nama = $_POST["nama"];
+	$email = $_POST["email"];
+	$pass = $_POST["password"];
+
+$error = " ";
+$class_error = "";
+if (!empty(trim($nama)) && !empty(trim($email)) && !empty(trim($pass))) {
+	if(register_cek_email($email)){
+					if (register_user($nama, $email, $pass)) {
+				header("location: index.php");
+					}else {
+						$error = "Gagal Registrasi";
+						$class_error = "form-control-danger";
+					}
+			}else {
+				$error = "Email Sudah ada,Gunakan email yang belum di gunakan";
+			}
+}else {
+	$error = "Semua harus di isi";
+}
+
+}
+
+
+
+
+ ?>
+
+
+
+<?php require_once 'template/header.php'; ?>
+
+<!DOCTYPE html>
 <html>
 <head>
 <title>Register</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
- <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet">
-<!-- jQuery -->
-<script src="js/jquery.min.js"></script>
-<!----webfonts--->
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-<!---//webfonts--->
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<meta name="keywords" content="Flat Trendy Signup Forms Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
+<link href="template/css/style.css" rel='stylesheet' type='text/css' />
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,800' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
-<body id="login">
-  <div class="login-logo">
-    <a href="index.php"><img src="images/logo.png" alt=""/></a>
-  </div>
-  <h2 class="form-heading">Register</h2>
-  <form class="form-signin app-cam" action="index.html">
-      <p>Enter your personal details below</p>
-      <input type="text" class="form-control1" placeholder="Full Name" autofocus="">
-      <input type="text" class="form-control1" placeholder="Address" autofocus="">
-      <input type="text" class="form-control1" placeholder="Email" autofocus="">
-      <input type="text" class="form-control1" placeholder="City/Town" autofocus="">
-      <div class="radios">
-        <label for="radio-01" class="label_radio">
-            <input type="radio" checked=""> Male
-        </label>
-        <label for="radio-02" class="label_radio">
-            <input type="radio"> Female
-        </label>
-	  </div>
-	  <p> Enter your account details below</p>
-      <input type="text" class="form-control1" placeholder="User Name" autofocus="">
-      <input type="password" class="form-control1" placeholder="Password">
-      <input type="password" class="form-control1" placeholder="Re-type Password">
-      <label class="checkbox-custom check-success">
-          <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1">I agree to the Terms of Service and Privacy Policy</label>
-      </label>
-      <button class="btn btn-lg btn-success1 btn-block" type="submit">Submit</button>
-      <div class="registration">
-          Already Registered.
-          <a class="" href="login.php">
-              Login
-          </a>
-      </div>
-  </form>
-   <div class="copy_layout login register">
-      <p>Copyright &copy; <?php echo date("Y") ?> Render. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
-   </div>
-</body>
-</html>
+<body>
+<script>$(document).ready(function(c) {
+	$('.close').on('click', function(c){
+		$('.login-form').fadeOut('slow', function(c){
+	  		$('.login-form').remove();
+		});
+	});
+});
+</script>
+ <!--SIGN UP-->
+		<div class="login-form">
+			<div class="close"> </div>
+					<div class="head">
+					</div>
+					<div class="head-info">
+						<h1>SIGN UP</h1>
+						<h2>Hello and Welcome! Tell us a bit about you</h2>
+					</div>
+				<form method="post" action="">
+					<li>
+						<input type="text" class="text" name="nama" placeholder="Name"  ><a href="#" class=" icon user"></a>
+					</li>
+					<li>
+						<input type="text" class="text <?php echo"$class_error"?> " name="email"  placeholder="Email" ><a href="#" class=" icon mail"></a>
+					</li>
+					<li>
+						<input type="password" name="password"  placeholder="********"><a href="#" class=" icon lock"></a>
+					</li>
+					<?php echo "$error";; ?>
+					<div class="p-container">
+								<input type="submit" name="submit" onclick="myFunction()" value="SIGN UP" >
+							<div class="clear"> </div>
+					</div>
+				</form>
+				<div class="social-icons">
+							<div class="but-bottom">
+							<a href="index.php" class="account"><p>Already have an account?</p></a>
+							<a href="#" class="trouble"><p>Trouble signing in?</p></a><div class="clear"> </div></div>
+							<a href="#" class="social-account"><h3>or sign in with social account</h3></a>
+							<a href="#"><ul class="facebook">
+								<li><img src="template/images/fb.png" />Facebook</li>
+							</ul></a>
+							<a href="#"><ul class="twitter">
+								<li><img src="template/images/tw.png" />Twitter</li>
+							</ul></a>
+							<div class="clear"> </div>
+				</div>
+				<div class="social-icons-1">
+							<a href="#"><ul class="google-plus">
+								<li><img src="template/images/gp.png" />Google +</li>
+							</ul></a>
+							<a href="#"><ul class="linkedIn">
+								<li><img src="template/images/ln.png" />LinkedIn</li>
+							</ul></a>
+							<div class="clear"> </div>
+				</div>
+			</div>
+ <!--/SIGN UP-->

@@ -1,3 +1,4 @@
+<?php require_once './sistem/core/init.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +24,7 @@
         <div class="nav-item">
           <div class="field is-grouped">
             <p class="control">
-              <a class="button is-info is-outlined" href="#" >
+              <a href="index.php" class="button is-info is-outlined" href="#" >
                 Product
               </a>
             </p>
@@ -57,22 +58,36 @@
       <!-- Add the modifier "is-active" to display it on mobile -->
       <div class="nav-right nav-menu">
 
-
+<div class="user">
+  <?php if (!isset($_SESSION['user'])) {?>
         <div class="nav-item">
           <div class="field is-grouped">
             <p class="control">
-              <a class="button is-info is-outlined" >
+              <a href="./sistem/server/auth/register.php" class="button is-info is-outlined" >
                 Register
               </a>
             </p>
             <p class="control">
-              <a class="button is-info is-outlined">
+              <a href="./sistem/server/auth/index.php" class="button is-info is-outlined">
               Login
               </a>
             </p>
 
-
           </div>
+          </div>
+          <?php }else{ ?>
+
+            <div class="nav-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a href="sistem/server/auth/user/index.php" class="button is-info is-outlined" >
+                    Profile
+                  </a>
+                </p>
+              </div>
+              </div>
+
+            <?php } ?>
         </div>
       </div>
     </nav>
