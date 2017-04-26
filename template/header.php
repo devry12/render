@@ -1,4 +1,12 @@
-<?php require_once './sistem/core/init.php'; ?>
+<?php require_once 'core/init2.php'; ?>
+
+<?php
+$user = false;
+if(session::exists('username'))
+{
+$user = true;
+}
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,16 +67,16 @@
       <div class="nav-right nav-menu">
 
 <div class="user">
-  <?php if (!isset($_SESSION['user'])) {?>
+  <?php if ($user == false) {?>
         <div class="nav-item">
           <div class="field is-grouped">
             <p class="control">
-              <a href="./sistem/server/auth/register.php" class="button is-info is-outlined" >
+              <a href="register.php" class="button is-info is-outlined" >
                 Register
               </a>
             </p>
             <p class="control">
-              <a href="./sistem/server/auth/index.php" class="button is-info is-outlined">
+              <a href="login.php" class="button is-info is-outlined">
               Login
               </a>
             </p>
@@ -80,7 +88,7 @@
             <div class="nav-item">
               <div class="field is-grouped">
                 <p class="control">
-                  <a href="sistem/server/auth/user/index.php" class="button is-info is-outlined" >
+                  <a href="profile.php" class="button is-info is-outlined" >
                     Profile
                   </a>
                 </p>
@@ -91,5 +99,3 @@
         </div>
       </div>
     </nav>
-
-    <h2 id="head">All Product</h2>

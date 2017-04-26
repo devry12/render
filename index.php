@@ -1,6 +1,7 @@
 <?php require_once 'template/header.php'; ?>
 
 
+    <h2 id="head">All Product</h2>
 <div class="container">
   <div class="row">
     <div class="col-4">

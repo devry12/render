@@ -23,7 +23,7 @@
         <div class="nav-item">
           <div class="field is-grouped">
             <p class="control">
-              <a href="../../../index.php" class="button is-info is-outlined" href="#" >
+              <a href="./index.php" class="button is-info is-outlined" href="#" >
                 Product
               </a>
             </p>
@@ -66,7 +66,7 @@
               </a>
             </p>
             <p class="control">
-              <a href="index.php" class="button is-info is-outlined">
+              <a href="login.php" class="button is-info is-outlined">
               Login
               </a>
             </p>
