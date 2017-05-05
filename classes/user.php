@@ -34,8 +34,37 @@ public function check_nama ($username)
     else return true;
 }
 
+public function level ($user)
+{
+    $data = $this->_db->get_level('users','username',$user);
+    $level = $data['level'];
+
+    if($level == 1) return true;
+    else return false;
+}
+
+
+public function iduser ($user)
+{
+    $data = $this->_db->ambildata('users','username',$user);
+
+  return $data;
+
+}
+
+public function profile ($user)
+{
+  $data = $this->_db->cek_data_profile('profile','id_users',$user);
+
+  return $data;
 
 }
 
 
+public function edit_profile($data=array())
+{
+    $datas = $this->_db->edit($data);
+}
+
+}
  ?>

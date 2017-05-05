@@ -1,10 +1,4 @@
-
-<?php require_once '../../template/header.php';
-
-if (isset($_SESSION['username'])){
-$username = $_SESSION['username'];
-}
-?>
+<?php require_once '../template/header.php'; ?>
 
         <div id="page-wrapper">
         <div class="graphs">

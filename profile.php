@@ -8,9 +8,16 @@ header('Location:login.php');
 
 
 require_once 'template/header.php';
+
+if (Input::get('username')== 1) {
+  $level = "Admin";
+}else {
+  $level = "Member";
+}
 ?>
 
 <h3>Welcome <?php echo session::get('username'); ?></h3><br>
+<p><?php echo $level ?></p>
 
 <a href="logout.php">Logout</a>
 

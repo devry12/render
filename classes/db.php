@@ -47,7 +47,7 @@ class db{
 
       $query = "INSERT INTO $table ($kolom) values ($nilai)";
 
-      return $this->run_query($query,'gagal memasukan data');
+      return $this->run_query($query,'gagal mendaftar');
  }
 
 
@@ -63,7 +63,59 @@ public function get_info($table, $kolom,$nilai)
 
 }
 
+public function get_level($tabel,$kolom,$nilai)
+{
+  $query ="SELECT level FROM $tabel WHERE $kolom = '$nilai' ";
+  $result = $this->mysqli->query($query);
+  while ($row = $result->fetch_assoc( )){
+     return $row;
+      }
+}
 
+public function ambildata($tabel,$kolom,$nilai)
+{
+  $query ="SELECT * FROM $tabel WHERE $kolom = '$nilai' ";
+  $result = $this->mysqli->query($query);
+  while ($row = $result->fetch_assoc( )){
+     return $row;
+      }
+}
+
+public function cek_data_profile($table, $kolom,$nilai)
+{
+  $query ="SELECT * FROM $table WHERE $kolom = $nilai";
+  $result = $this->mysqli->query($query);
+  if ($result->num_rows>0) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+public function edit($data = array())
+{
+$depan = $data['namadepan'];
+$belakang = $data['namabelakang'];
+$email = $data['email'];
+$jekel = $data['jekel'];
+$tlp = $data['tlp'];
+$alamat = $data['alamat'];
+$avatar = $data['file'];
+$id_users = $data['id'];
+
+$query = "UPDATE profile SET nama_depan = $depan,nama_belakang = $belakang,email = $email,jenis_kelamin = $jekel,no_tlp = $tlp,alamat = $alamat,avatar = $avatar WHERE id_users = $id_users";
+
+$result = $this->mysqli->query($query);
+
+print_r($result);
+
+
+
+
+
+
+
+}
 
 public function run_query($query,$msg)
 {

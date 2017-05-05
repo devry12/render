@@ -1,4 +1,4 @@
-<?php require_once 'core/init2.php'; ?>
+<?php require_once 'core/init.php'; ?>
 
 <?php
 $user = false;
@@ -12,6 +12,7 @@ $user = true;
   <head>
     <meta charset="utf-8">
     <title>Render</title>
+    <link rel="icon" href="./template/css/img/favicon.ico" type="image/x-icon"/>
 
     <!--css Start-->
     <link rel="stylesheet" href="./template/css/style.css">
@@ -50,7 +51,7 @@ $user = true;
         </a>
 
         <a class="nav-item" href="#">
-          <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+          <img src="./template/css/img/logo.png" alt="render">
         </a>
       </div>
 
@@ -88,7 +89,7 @@ $user = true;
             <div class="nav-item">
               <div class="field is-grouped">
                 <p class="control">
-                  <a href="profile.php" class="button is-info is-outlined" >
+                  <a href="auth/profile.php" class="button is-info is-outlined" >
                     Profile
                   </a>
                 </p>

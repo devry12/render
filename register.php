@@ -39,6 +39,38 @@ if ($validation->passed() ) {
 }else {
   $errors = $validation->errors();
 }
+}if (Input::get('submit')) {
+//valodasi
+// memangil object validasi
+$validation = new validation();
+
+//metode check
+$validation = $validation->check(array(
+  'username' => array(
+                  'required' => true,
+                  'min'     => 3,
+                  'max'     => 50,
+                    ),
+  'email' => array(
+                  'required' => true,
+                ),
+  'password' => array(
+                  'required' => true,
+                  'min'     => 6,
+                    )
+));
+//lolos
+if ($validation->passed() ) {
+  $user->register_user(array(
+    'username' => Input::get('username'),
+    'email' => Input::get('email'),
+    'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
+  ));
+
+  session::set('username', Input::get('username'));
+  header('Location: profile.php ');
+}else {
+  $errors = $validation->errors();
 }
 
  ?>

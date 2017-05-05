@@ -24,10 +24,11 @@ if ($validation->passed() ) {
 						  	if($user->login_user(Input::get('username'),Input::get('password')))
 											{
 						  session::set('username', Input::get('username'));
-						  header('Location: profile.php ');
+                header("Location:auth/profile.php");
 								}else {
 							$errors[] = "Password Salah";
 											}
+
 
 }else {
 	$errors[] = "Username Salah";
