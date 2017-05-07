@@ -104,7 +104,7 @@ if ($validation->passed() ) {
 				<div class="social-icons">
 							<div class="but-bottom">
 							<a href="#" class="account"><p>Forgot your password?</p></a>
-							<a href="#" class="trouble"><p>Need to sign up?</p></a><div class="clear"> </div></div>
+							<a href="register.php" class="trouble"><p>Need to sign up?</p></a><div class="clear"> </div></div>
 							<a href="#" class="social-account"><h3>or sign in with social account</h3></a>
 							<a href="#"><ul class="facebook">
 								<li><img src="server/template/images/fb.png" />Facebook</li>

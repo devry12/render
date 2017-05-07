@@ -100,23 +100,48 @@ $email = $data['email'];
 $jekel = $data['jekel'];
 $tlp = $data['tlp'];
 $alamat = $data['alamat'];
-$avatar = $data['file'];
 $id_users = $data['id'];
 
-$query = "UPDATE profile SET nama_depan = $depan,nama_belakang = $belakang,email = $email,jenis_kelamin = $jekel,no_tlp = $tlp,alamat = $alamat,avatar = $avatar WHERE id_users = $id_users";
+
+$query = "UPDATE profile SET nama_depan = '$depan',nama_belakang = '$belakang',jenis_kelamin = '$jekel',alamat = '$alamat',no_tlp = '$tlp' WHERE id_users = $id_users";
 
 $result = $this->mysqli->query($query);
 
-print_r($result);
+}
+
+public function tambah($data = array())
+{
+$depan = $data['namadepan'];
+$belakang = $data['namabelakang'];
+$jekel = $data['jekel'];
+$tlp = $data['tlp'];
+$alamat = $data['alamat'];
+$id_users = $data['id'];
 
 
+$query = "INSERT INTO profile (nama_depan, nama_belakang, jenis_kelamin, alamat, no_tlp, id_users) values ('$depan','$belakang','$jekel','$alamat','$tlp','$id_users')";
+$result = $this->mysqli->query($query);
+}
+public function ambilprofile($data)
+{
+    $query = "SELECT * FROM profile WHERE id_users = $data";
+    $result = $this->mysqli->query($query);
 
-
-
-
+    while ($row = $result->fetch_assoc()) {
+      return $row;
+    }
 
 }
 
+
+//memasukan avatar
+
+public function avatar($data,$id)
+{
+  $query = "UPDATE profile SET avatar = '$data' WHERE id_users = $id";
+  $result = $this->mysqli->query($query);
+  return $result;
+}
 public function run_query($query,$msg)
 {
   if($this->mysqli->query($query)) return true;
@@ -127,9 +152,6 @@ public function run_query($query,$msg)
  {
      return $this->mysqli->real_escape_string($name);
  }
-
-
-
 
 }
  ?>

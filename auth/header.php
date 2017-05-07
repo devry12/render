@@ -13,6 +13,10 @@ if ($user->level($nama_user)) {
 $data = $user->iduser(session::get('username'));
 $id= $data['id'];
 
+
+
+
+
 if($profile = $user->profile($id)){
   $user->edit_profile(array(
     'id' => Input::get('id'),
@@ -21,8 +25,7 @@ if($profile = $user->profile($id)){
     'email' => Input::get('email'),
     'jekel' => Input::get('jekel'),
     'tlp' => Input::get('tlp'),
-    'alamat' => Input::get('alamat'),
-    'file' => Input::get('file')
+    'alamat' => Input::get('alamat')
   ));
 }else{
   $user->insert_profile(array(
@@ -31,10 +34,17 @@ if($profile = $user->profile($id)){
     'namabelakang' => Input::get('namabelakang'),
     'jekel' => Input::get('jekel'),
     'tlp' => Input::get('tlp'),
-    'alamat' => Input::get('alamat'),
-    'file' => Input::get('file')
+    'alamat' => Input::get('alamat')
   ));
 }
+
+
+$users = $user->data_user($id);
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -175,7 +185,7 @@ if($profile = $user->profile($id)){
         </li>
         <li>
           <button type="button" class="navbar-toggle">
-            <img class="profile-img" src="./assets/images/profile.png">
+            <img class="profile-img" src="profile/<?php echo $users['avatar']?>">
           </button>
         </li>
       </ul>
@@ -296,7 +306,7 @@ if($profile = $user->profile($id)){
 <?php }else{ } ?>
         <li class="dropdown profile">
           <a href="profile.php" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="./assets/images/profile.png">
+            <img class="profile-img" src="profile/<?php echo $users['avatar']?>">
             <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">
@@ -310,14 +320,8 @@ if($profile = $user->profile($id)){
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <span class="badge badge-danger pull-right">5</span>
-                  My Inbox
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  Setting
+                <a href="avatar.php">
+                  Avatar
                 </a>
               </li>
               <li>

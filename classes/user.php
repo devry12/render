@@ -60,10 +60,30 @@ public function profile ($user)
 
 }
 
+//upload avatar
+
+public function avatar($data,$id)
+{
+  $data = $this->_db->avatar($data,$id);
+}
+
+
+
 
 public function edit_profile($data=array())
 {
     $datas = $this->_db->edit($data);
+}
+
+public function insert_profile($data = array())
+{
+    $data = $this->_db->tambah($data);
+}
+
+public function data_user($data)
+{
+    $data = $this->_db->ambilprofile($data);
+    return $data;
 }
 
 }

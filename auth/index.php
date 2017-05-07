@@ -1,4 +1,11 @@
-<?php require_once 'header.php'; ?>
+<?php require_once 'header.php';
+
+if($level == 'member')
+{
+header('Location:profile.php');
+}
+
+ ?>
 
 
   <div class="btn-floating" id="help-actions">

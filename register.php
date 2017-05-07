@@ -7,7 +7,7 @@ header('Location:profile.php');
 
 $errors = array();
 if (Input::get('submit')) {
-//valodasi
+//validasi
 // memangil object validasi
 $validation = new validation();
 
@@ -68,16 +68,16 @@ if ($validation->passed() ) {
   ));
 
   session::set('username', Input::get('username'));
-  header('Location: profile.php ');
+  header('Location: auth/profile.php ');
 }else {
   $errors = $validation->errors();
 }
-
+}
  ?>
 
 
 
-<?php require_once 'server/template/header.php'; ?>
+<?php require_once 'server/template/header.php' ?>
 
 <!DOCTYPE html>
 <html>
@@ -114,9 +114,9 @@ if ($validation->passed() ) {
             <?php
             if(!empty($errors)){ ?>
             <div class="alert alert-danger" role="alert">
-            <?php foreach ($errors as $error): ?>
+            <?php foreach ($errors as $error){ ?>
               <p><?php echo $error; ?></p> <br>
-            <?php endforeach; ?>
+            <?php } ?>
             </div>
             <?php  }?>
 
@@ -160,4 +160,3 @@ if ($validation->passed() ) {
 							<div class="clear"> </div>
 				</div>
 			</div>
- <!--/SIGN UP-->
