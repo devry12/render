@@ -2,7 +2,7 @@
 
 if(session::exists('username'))
 {
-header('Location:profile.php');
+header('Location:auth/profile.php');
 }
 
 $errors = array();
@@ -28,51 +28,26 @@ $validation = $validation->check(array(
 ));
 //lolos
 if ($validation->passed() ) {
-  $user->register_user(array(
-    'username' => Input::get('username'),
-    'email' => Input::get('email'),
-    'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
-  ));
+  if ($user->name_check(Input::get('username')))
+  {
 
-  session::set('username', Input::get('username'));
-  header('Location: profile.php ');
+
+            $user->register_user(array(
+              'username' => Input::get('username'),
+              'email' => Input::get('email'),
+              'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
+            ));
+
+            session::set('username', Input::get('username'));
+            header('Location: auth/profile.php ');
+          }else {
+            $errors = $validation->errors();
+          }
 }else {
-  $errors = $validation->errors();
+  header('Location: register.php ');
 }
-}if (Input::get('submit')) {
-//valodasi
-// memangil object validasi
-$validation = new validation();
+}
 
-//metode check
-$validation = $validation->check(array(
-  'username' => array(
-                  'required' => true,
-                  'min'     => 3,
-                  'max'     => 50,
-                    ),
-  'email' => array(
-                  'required' => true,
-                ),
-  'password' => array(
-                  'required' => true,
-                  'min'     => 6,
-                    )
-));
-//lolos
-if ($validation->passed() ) {
-  $user->register_user(array(
-    'username' => Input::get('username'),
-    'email' => Input::get('email'),
-    'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
-  ));
-
-  session::set('username', Input::get('username'));
-  header('Location: auth/profile.php ');
-}else {
-  $errors = $validation->errors();
-}
-}
  ?>
 
 
@@ -124,6 +99,7 @@ if ($validation->passed() ) {
 					</div>
 				<form method="post" action="register.php">
 					<li>
+            <input type="hidden" name="profile" value="profile.png">
 						<input type="text" class="text" name="username" placeholder="Username"  ><a class=" icon user"></a>
 					</li>
 					<li>

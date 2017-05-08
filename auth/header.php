@@ -3,6 +3,8 @@ require_once '../core/init2.php';
 
 $nama_user = session::get('username');
 
+$product = new product();
+
 
 if ($user->level($nama_user)) {
   $level = 'admin';
@@ -40,6 +42,25 @@ if($profile = $user->profile($id)){
 
 
 $users = $user->data_user($id);
+
+
+//set default avatar
+if (empty($users['avatar'])) {
+  $img = "profile.png";
+}else {
+  $img = $users['avatar'];
+}
+
+
+
+//menampilkan data users
+$list = $user->list_users();
+
+
+
+//cover
+
+//memasukan data product
 
 
 
@@ -104,6 +125,15 @@ $users = $user->data_user($id);
             <i class="fa fa-comments" aria-hidden="true"></i>
           </div>
           <div class="title">Messaging</div>
+        </a>
+      </li>
+
+      <li class="@@menu.messaging">
+        <a href="form.php">
+          <div class="icon">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+          <div class="title">New Product</div>
         </a>
       </li>
 
@@ -185,7 +215,7 @@ $users = $user->data_user($id);
         </li>
         <li>
           <button type="button" class="navbar-toggle">
-            <img class="profile-img" src="profile/<?php echo $users['avatar']?>">
+            <img class="profile-img" src="profile/<?php echo $img?>">
           </button>
         </li>
       </ul>
@@ -306,7 +336,7 @@ $users = $user->data_user($id);
 <?php }else{ } ?>
         <li class="dropdown profile">
           <a href="profile.php" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="profile/<?php echo $users['avatar']?>">
+            <img class="profile-img" src="profile/<?php echo $img?>">
             <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">

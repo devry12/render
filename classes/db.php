@@ -48,7 +48,18 @@ class db{
       $query = "INSERT INTO $table ($kolom) values ($nilai)";
 
       return $this->run_query($query,'gagal mendaftar');
+
  }
+
+public function name_chack_db($data)
+{
+    $query = "SELECT username,email FROM users WHERE username = '$data'";
+    $result = $this->mysqli->query($query);
+    if ($result->num_rows >0){
+       return false;
+     }else{ return true;
+    }
+    }
 
 
 public function get_info($table, $kolom,$nilai)
@@ -142,6 +153,33 @@ public function avatar($data,$id)
   $result = $this->mysqli->query($query);
   return $result;
 }
+
+//list_users
+
+public function list_user()
+{
+      $query = "SELECT count(*) FROM users";
+      $result = $this->mysqli->query($query);
+      if ($result->num_rows>0) {
+        while ($row = $result->fetch_array()) {
+          return $row;
+        }
+      }
+}
+
+
+public function data_userss()
+{
+  $query = "SELECT * FROM profile";
+  $result = $this->mysqli->query($query);
+  if ($result->num_rows>0) {
+    while ($row = $result->fetch_assoc()) {
+      $datass[] = $row;
+      return $datass;
+    }
+  }
+}
+
 public function run_query($query,$msg)
 {
   if($this->mysqli->query($query)) return true;
@@ -152,6 +190,22 @@ public function run_query($query,$msg)
  {
      return $this->mysqli->real_escape_string($name);
  }
+
+ // product
+
+
+
+public function insert_goods($data = array())
+{
+  $kode = $data['kode'];
+  $nama = $data['nama'];
+  $cover = $data['cover'];
+  $deskripsi = $data['deskripsi'];
+  $harga = $data['harga'];
+  $stok = $data['stok'];
+  $query = "INSERT INTO product (kode_produk,nama_produk,cover,deskripsi,harga,stok) values ('$kode','$nama','$cover','$deskripsi','$harga','$stok')";
+  $result = $this->mysqli->query($query);
+}
 
 }
  ?>

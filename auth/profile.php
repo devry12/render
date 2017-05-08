@@ -10,7 +10,7 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body app-heading">
-          <img class="profile-img" src="profile/<?php echo $users['avatar']?>">
+          <img class="profile-img" src="profile/<?php echo $img?>">
           <div class="app-title">
             <div class="title"><span class="highlight"><?php echo "$nama_user"; ?></span></div>
             <div class="description">Bio</div>

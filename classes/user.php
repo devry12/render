@@ -13,6 +13,12 @@ public function register_user($data = array())
     else return false;
 }
 
+//name_check
+public function name_check($data)
+{
+    $data = $this->_db->name_chack_db($data);
+    return $data;
+}
 
 public function login_user($username,$password)
 {
@@ -83,6 +89,18 @@ public function insert_profile($data = array())
 public function data_user($data)
 {
     $data = $this->_db->ambilprofile($data);
+    return $data;
+}
+
+
+public function list_users()
+{
+    $data = $this->_db->list_user();
+    return $data;
+}
+public function all_data()
+{
+    $data= $this->_db->data_userss();
     return $data;
 }
 

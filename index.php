@@ -7,10 +7,10 @@
     <div class="col-4">
       <div class="img-thumbnail-">
         <div class="img">
-        <a href="#"><img src="template/css/img/liberty-death.jpg"></a>
+        <a href="#"><img src="product/k12.jpg"></a>
         <p class="theme">Liberty Death</p>
         <hr id="garis">
-        <p class="theme" ><span class="harga"><b>125K</b></span></p>
+        <p class="theme" ><span class="harga"><b>125</b><b>K</b></span></p>
         </div>
       </div>
     </div>
