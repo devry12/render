@@ -207,5 +207,24 @@ public function insert_goods($data = array())
   $result = $this->mysqli->query($query);
 }
 
+
+public function data_insert_product($kode,$nama,$deskripsi,$harga,$path)
+{
+  $data = array('kode'        => $kode,
+                'nama'        => $nama,
+                'deskripsi'  =>   $deskripsi,
+                'harga'       => $harga,
+                'foto'        => $path
+              );
+
+  die(print_r($data));
+
+
+  $query = "SELECT * FROM product"; // Query untuk menampilkan semua data siswa
+  $result = $this->mysqli->query($query);
+  while ($row = $data = $result->fetch_assoc()) {
+  return $row;
+  }
+}
 }
  ?>

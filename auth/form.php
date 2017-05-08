@@ -6,7 +6,7 @@
           Form Horizontal
         </div>
         <div class="card-body">
-          <form class="form form-horizontal" method="post" action="">
+          <form class="form form-horizontal" method="post" action="product_process.php">
   <div class="section">
     <div class="section-title">Information</div>
     <div class="section-body">
@@ -44,7 +44,7 @@
       <div class="form-group">
         <label class="col-md-3 control-label">Cover</label>
         <div class="col-md-9">
-          <input type="file" class="form-control" accept = "image/jpg,image/png,image/jpeg" name="cover" value="">
+          <input type="file" class="form-control" accept = "image/jpg,image/png,image/jpeg" name="foto">
         </div>
       </div>
     </div>
