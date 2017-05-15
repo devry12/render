@@ -5,7 +5,7 @@
 }
 #kaki{
  margin-left: 35%;
- margin-top: 20px;
+ margin-top: 80px;
   background-color: white;
   list-style-type: none;
 }
@@ -24,6 +24,7 @@
 }
 .badan{
   background: #F2F2F2;
+  margin-bottom: 40px;
 }
 
 .nav{
@@ -31,19 +32,20 @@
 }
 .img{
   margin-top: 20px;
-  width: 400px;
+  max-width: 500px;
 }
 .theme{
-  margin-left: 40%;
+  margin-left: 39%;
 }
+
 
 .theme .harga{
 
-  margin-left: 27px;
+  margin-left: 20px;
 }
 
 #garis{
-margin-left: 32%;
+margin-left:30%;
 margin-top: 1px;
 margin-bottom: 1px;
 width: 40%;
@@ -51,4 +53,64 @@ height: 3px;
 border-radius: 5px;
 background-color: #3273dc;
 
+}
+.box_product{
+  margin-left: 30px;
+}
+.judul{
+  margin-top: 30px;
+  font-size: 36px;
+  padding-bottom: 5px;
+}
+
+.hargaper{
+
+  font-size: 24px;
+  padding-bottom: 30px;
+}
+
+.garis{
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 400px;
+  height: 3px;
+  border-radius: 5px;
+  background-color: #3273dc;
+}
+.size{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+.quantity{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 32px;
+}
+
+.label{
+  margin-top: 20px;
+}
+
+.nav-tabs{
+  background-color: #FFFFFF;
+}
+
+.add{
+  border-radius: 100px;
+  margin-top: 20px;
+  width: 110px;
+  height: 50px;
+  color: white;
+  font-size: 12px;
 }

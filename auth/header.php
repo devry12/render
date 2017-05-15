@@ -1,77 +1,61 @@
 <?php
-require_once '../core/init2.php';
+require_once '../core/init.php';
+$user = $_SESSION['user'];
+$users = cek_id($user);
 
-$nama_user = session::get('username');
+$profile = getprofile($users['id']);
 
-$product = new product();
-
-
-if ($user->level($nama_user)) {
-  $level = 'admin';
-}else {
-    $level = 'member';
-  }
-
-$data = $user->iduser(session::get('username'));
-$id= $data['id'];
-
-
-
-
-
-if($profile = $user->profile($id)){
-  $user->edit_profile(array(
-    'id' => Input::get('id'),
-    'namadepan' => Input::get('namadepan'),
-    'namabelakang' => Input::get('namabelakang'),
-    'email' => Input::get('email'),
-    'jekel' => Input::get('jekel'),
-    'tlp' => Input::get('tlp'),
-    'alamat' => Input::get('alamat')
-  ));
-}else{
-  $user->insert_profile(array(
-    'id' => Input::get('id'),
-    'namadepan' => Input::get('namadepan'),
-    'namabelakang' => Input::get('namabelakang'),
-    'jekel' => Input::get('jekel'),
-    'tlp' => Input::get('tlp'),
-    'alamat' => Input::get('alamat')
-  ));
-}
-
-
-$users = $user->data_user($id);
-
-
-//set default avatar
-if (empty($users['avatar'])) {
+if ($profile['avatar'] == null) {
   $img = "profile.png";
 }else {
-  $img = $users['avatar'];
+  $img = $profile['avatar'];
 }
 
+$levels = $users['level'];
+if ($levels == 1) {
+  $level = "admin";
+}else {
+  $level = "member";
+}
+    $info= "";
+if (cek_profile_data($users['id'])) {
+  if (isset($_POST['save'])) {
+    $depan    = $_POST['namadepan'];
+    $belakang = $_POST['namabelakang'];
+    $gender   = $_POST['jekel'];
+    $tlp      = $_POST['tlp'];
+    $alamat   = $_POST['alamat'];
 
 
-//menampilkan data users
-$list = $user->list_users();
+    if(edit_data($depan,$belakang,$gender,$tlp,$alamat,$users['id'])){
+      $info= "Update data berhasil";
+    }else {
+      $info = "Maaf ada kesalahan, mohon ulang kembli atau hubingi administrator";
+    }
+  }
+}else {
+  if (isset($_POST['save'])) {
+    $depan    = $_POST['namadepan'];
+    $belakang = $_POST['namabelakang'];
+    $gender   = $_POST['jekel'];
+    $tlp      = $_POST['tlp'];
+    $alamat   = $_POST['alamat'];
 
 
-
-//cover
-
-//memasukan data product
-
-
-
-
+    if(input_data($depan,$belakang,$gender,$tlp,$alamat,$users['id'])){
+      $info= "Input data berhasil";
+    }else {
+      $info = "Maaf ada kesalahan, mohon ulang kembali atau hubungi administrator";
+    }
+  }
+}
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title><?php echo "$nama_user"; ?></title>
+  <title><?php echo "$user"; ?></title>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -100,7 +84,7 @@ $list = $user->list_users();
 
 <aside class="app-sidebar" id="sidebar">
   <div class="sidebar-header">
-    <a class="sidebar-brand" href="profile.php"><span class="highlight"><?php echo "$nama_user"; ?></span> Panel</a>
+    <a class="sidebar-brand" href="../index.php"><span class="highlight"><?php echo "$user"; ?></span> Panel</a>
     <button type="button" class="sidebar-toggle">
       <i class="fa fa-times"></i>
     </button>
@@ -127,14 +111,20 @@ $list = $user->list_users();
           <div class="title">Messaging</div>
         </a>
       </li>
-
-      <li class="@@menu.messaging">
-        <a href="form.php">
+      <li class="dropdown ">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <div class="icon">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </div>
-          <div class="title">New Product</div>
+          <div class="title">Product</div>
         </a>
+        <div class="dropdown-menu">
+          <ul>
+            <li class="section"><i class="fa fa-file-o" aria-hidden="true"></i> Product</li>
+            <li><a href="form.php">Add Product</a></li>
+            <li><a href="product.php">Product</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="dropdown ">
@@ -336,12 +326,12 @@ $list = $user->list_users();
 <?php }else{ } ?>
         <li class="dropdown profile">
           <a href="profile.php" class="dropdown-toggle"  data-toggle="dropdown">
-            <img class="profile-img" src="profile/<?php echo $img?>">
+            <img class="profile-img" src="profile/<?php echo $img ?>">
             <div class="title">Profile</div>
           </a>
           <div class="dropdown-menu">
             <div class="profile-info">
-              <h4 class="username"><?php echo "$nama_user"; ?></h4>
+              <h4 class="username"><?php echo "$user"; ?></h4>
             </div>
             <ul class="action">
               <li>

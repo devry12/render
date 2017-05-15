@@ -1,12 +1,18 @@
-<?php require_once 'core/init.php'; ?>
+<?php require_once 'core/init.php';
 
-<?php
+
 $user = false;
-if(session::exists('username'))
-{
-$user = true;
+if (!isset($_SESSION['user'])) {
+  $user = false;
+}else {
+  $user = true;
 }
+
+$getproduct = get_data_perproduct();
+
+
  ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,8 +43,7 @@ $user = true;
                 Product
               </a>
             </p>
-
-
+           <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
           </div>
         </div>
       </div>
@@ -68,7 +73,8 @@ $user = true;
       <div class="nav-right nav-menu">
 
 <div class="user">
-  <?php if ($user == false) {?>
+  <?php if ($user == false){ ?>
+
         <div class="nav-item">
           <div class="field is-grouped">
             <p class="control">
@@ -84,8 +90,7 @@ $user = true;
 
           </div>
           </div>
-          <?php }else{ ?>
-
+  <?php }else{ ?>
             <div class="nav-item">
               <div class="field is-grouped">
                 <p class="control">
@@ -95,8 +100,7 @@ $user = true;
                 </p>
               </div>
               </div>
-
-            <?php } ?>
+              <?php } ?>
         </div>
       </div>
     </nav>

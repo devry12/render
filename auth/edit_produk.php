@@ -2,8 +2,27 @@
 
 $info= "";
 $error= "";
+$kode = $_GET['kode'];
+if (isset($_GET['kode'])) {
+  $products = data_perproduct($kode);
 
-if (isset($_POST['add'])) {
+while($data = mysqli_fetch_assoc($products)) {
+
+  $kode = $data['kode_produk'];
+  $nama = $data['nama_produk'];
+  $deskripsi = $data['deskripsi'];
+  $harga = $data['harga'];
+  $stok = $data['stok'];
+  $cover = $data['cover'];
+
+}
+}
+
+
+$info= "";
+$error= "";
+
+if (isset($_POST['edit'])) {
 
   $kode         = $_POST['kode'];
   $nama         = $_POST['nama'];
@@ -16,24 +35,23 @@ if (isset($_POST['add'])) {
   $file = $kode."-".$file;
   $file = strtolower($file);
 if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !empty(trim($harga)) && !empty(trim($stock)) && !empty(trim($file))) {
-    if (cek_kode_product($kode)) {
-    if(add_product($kode,$nama,$deskripsi,$harga,$stock,$file)){
+    if(edit_product($kode,$nama,$deskripsi,$harga,$stock,$file)){
       if (move_uploaded_file($file_loc,$folder.$file)) {
-          $info= "Add product data berhasil";
+          $info= "Add  product  berhasil";
       }else {
-          $info= "Upload foto product data berhasil";
+          $info= "Add  product  gagal";
       }
-      $info= "Add product data berhasil";
     }else {
-      $info= "Add product data gagal";
+      $info= "Add product  gagal";
     }
-}else {
-  $error = "Kode Product sudah ada";
-}
 }else {
   $error = "Data Product harus di isi semua";
 }
-} ?>
+}
+
+
+
+ ?>
 
 
 
@@ -62,13 +80,13 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
       <div class="form-group">
         <label class="col-md-3 control-label">Kode Product</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" name="kode" placeholder="">
+          <input type="text" class="form-control" name="kode" value="<?=$kode?>" placeholder="">
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-3 control-label">Name</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" name="nama" placeholder="">
+          <input type="text" class="form-control" name="nama"value="<?=$nama?>" placeholder="">
         </div>
       </div>
       <div class="form-group">
@@ -76,7 +94,7 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
           <label class="control-label">Description</label>
         </div>
         <div class="col-md-9">
-          <textarea class="form-control" name="deskripsi"></textarea>
+          <textarea class="form-control" name="deskripsi"><?=$deskripsi?></textarea>
         </div>
       </div>
       <div class="form-group">
@@ -84,7 +102,7 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
         <div class="col-md-9">
           <div class="input-group">
             <span class="input-group-addon">Rp</span>
-            <input type="number" class="form-control" name="harga" aria-label="Amount (to the nearest Rupiah)">
+            <input type="number" class="form-control" name="harga"value="<?=$harga?>" aria-label="Amount (to the nearest Rupiah)">
             <span class="input-group-addon">K</span>
           </div>
         </div>
@@ -94,6 +112,7 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
         <label class="col-md-3 control-label">Cover</label>
         <div class="col-md-9">
           <input type="file" accept="image/jpg,image/png,image/jpeg" name="file">
+          <img src="../product/<?=$cover?>" alt="">
         </div>
       </div>
     </div>
@@ -108,7 +127,7 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
         <label class="col-md-3 control-label">Stock</label>
         <div class="col-md-4">
           <div class="input-group">
-            <input type="number" class="form-control" name="stock" placeholder="0">
+            <input type="number" class="form-control" value="<?=$stok?>" name="stock" placeholder="0">
           </div>
         </div>
       </div>
@@ -117,7 +136,7 @@ if (!empty(trim($kode)) && !empty(trim($nama)) && !empty(trim($deskripsi)) && !e
   <div class="form-footer">
     <div class="form-group">
       <div class="col-md-9 col-md-offset-3">
-        <button type="submit" name="add" class="btn btn-primary">Save</button>
+        <button type="submit" name="edit" class="btn btn-primary">Save</button>
         <button type="reset" class="btn btn-default">Cancel</button>
       </div>
     </div>

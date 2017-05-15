@@ -1,53 +1,49 @@
 <?php require_once 'core/init.php';
 
-if(session::exists('username'))
-{
-header('Location:auth/profile.php');
-}
 
-$errors = array();
-if (Input::get('submit')) {
-//validasi
-// memangil object validasi
-$validation = new validation();
+$error = "";
 
-//metode check
-$validation = $validation->check(array(
-  'username' => array(
-                  'required' => true,
-                  'min'     => 3,
-                  'max'     => 50,
-                    ),
-  'email' => array(
-                  'required' => true,
-                ),
-  'password' => array(
-                  'required' => true,
-                  'min'     => 6,
-                    )
-));
-//lolos
-if ($validation->passed() ) {
-  if ($user->name_check(Input::get('username')))
-  {
+if (isset($_POST['submit'])) {
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $confirm = $_POST['confirm'];
 
 
-            $user->register_user(array(
-              'username' => Input::get('username'),
-              'email' => Input::get('email'),
-              'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
-            ));
 
-            session::set('username', Input::get('username'));
-            header('Location: auth/profile.php ');
-          }else {
-            $errors = $validation->errors();
-          }
+if (!empty(trim($username)) && !empty(trim($email)) && !empty(trim($password))) {
+if (strlen($username)>=6) {
+if (strlen($password)>=6) {
+if($confirm == $password){
+if(register_cek_nama($username)){
+  if(register_cek_email($email)){
+  //database register
+  if(register_user($username,$email,$password)){
+    header('location: login.php');
+  }else {
+    $error = "ada masalah hubungi administrator";
+  }
 }else {
-  header('Location: register.php ');
+  $error = "email sudah ada";
 }
+}else {
+  $error = "Nama Sudah Ada";
+}
+}else{
+  $error = "Maaf password tidak sama";
+}
+}else {
+  $error = "Password minimal 6 karakter";
+}
+}else {
+  $error = "username Minimal 6 karakter";
 }
 
+}else {
+  $error = "semua harus di isi";
+
+}
+}
  ?>
 
 
@@ -81,25 +77,21 @@ if ($validation->passed() ) {
 
 
 		<div class="login-form">
-			<div class="close"> </div>
 					<div class="head">
 					</div>
 					<div class="head-info">
 						<h1>SIGN UP</h1>
-            <?php
-            if(!empty($errors)){ ?>
-            <div class="alert alert-danger" role="alert">
-            <?php foreach ($errors as $error){ ?>
-              <p><?php echo $error; ?></p> <br>
-            <?php } ?>
-            </div>
-            <?php  }?>
 
 						<h2>Hello and Welcome! Tell us a bit about you</h2>
 					</div>
+
+
 				<form method="post" action="register.php">
+          <?php if($error){ ?>
+          <div class="alert alert-warning">
+            <strong >Warning!</strong> <?php echo $error; ?></div>
+            <?php } ?>
 					<li>
-            <input type="hidden" name="profile" value="profile.png">
 						<input type="text" class="text" name="username" placeholder="Username"  ><a class=" icon user"></a>
 					</li>
 					<li>
@@ -108,6 +100,9 @@ if ($validation->passed() ) {
 					<li>
 						<input type="password" name="password"  placeholder="********"><a class=" icon lock"></a>
 					</li>
+          <li>
+            <input type="password" name="confirm"  placeholder="Confirm"><a class=" icon lock"></a>
+          </li>
 					<div class="p-container">
 								<input type="submit" name="submit" onclick="myFunction()" value="SIGN UP" >
 							<div class="clear"> </div>

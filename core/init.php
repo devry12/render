@@ -1,9 +1,8 @@
 <?php
+require_once 'function/db.php';
+require_once 'function/user.php';
+require_once 'function/product.php';
 
-  session_start();
-  //load class
-spl_autoload_register(function($class){
-    require_once 'classes/'.$class. '.php';
-});
+session_start();
 
-$user = new user();
+ ?>

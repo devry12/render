@@ -1,6 +1,44 @@
 <?php require_once 'header.php';
 
+if(isset($_POST['btn-upload']))
+{
 
+	$file = rand(1000,100000)."-".$_FILES['file']['name'];
+    $file_loc = $_FILES['file']['tmp_name'];
+	$file_size = $_FILES['file']['size'];
+	$file_type = $_FILES['file']['type'];
+	$folder="profile/";
+
+	// new file size in KB
+	$new_size = $file_size/1024;
+	// new file size in KB
+
+	// make file name in lower case
+	$new_file_name = strtolower($file);
+	// make file name in lower case
+
+	$final_file=str_replace(' ','-',$new_file_name);
+
+	if(move_uploaded_file($file_loc,$folder.$final_file))
+	{
+		avatar($final_file,$users['id']);
+		?>
+		<script>
+		alert('successfully uploaded');
+        window.location.href='avatar.php?success';
+        </script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script>
+		alert('error while uploading file');
+        window.location.href='avatar.php?fail';
+        </script>
+		<?php
+	}
+}
 
  ?>
 
@@ -12,7 +50,7 @@
         <div class="card-body app-heading">
           <img class="profile-img" src="profile/<?php echo $img?>">
           <div class="app-title">
-            <div class="title"><span class="highlight"><?php echo "$nama_user"; ?></span></div>
+            <div class="title"><span class="highlight"><?php echo "$user"; ?></span></div>
             <div class="description">Bio</div>
           </div>
         </div>
@@ -35,7 +73,7 @@
               <div class="col-2">
 
                 <div id="body">
-                	<form action="upload.php" method="post" enctype="multipart/form-data">
+                	<form action="" method="post" enctype="multipart/form-data">
                 	<input type="file" accept="image/jpg,image/png,image/jpeg" name="file" />
                 	<button type="submit"  name="btn-upload">upload</button>
                 	</form>

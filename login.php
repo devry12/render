@@ -1,45 +1,28 @@
 <?php require_once 'core/init.php';
 
-
-if(session::exists('username'))
-{
-header('Location:profile.php');
-}
-
-
-$errors = array();
-if (Input::get('submit')) {
-//valodasi
-// memangil object validasi
-$validation = new validation();
-
-//metode check
-$validation = $validation->check(array(
-  'username' => array('required' => true),
-  'password' => array('required' => true)
-));
-//lolos
-if ($validation->passed() ) {
-	if($user->check_nama(Input::get('username'))){
-						  	if($user->login_user(Input::get('username'),Input::get('password')))
-											{
-						  session::set('username', Input::get('username'));
-                header("Location:auth/profile.php");
-								}else {
-							$errors[] = "Password Salah";
-											}
+$error ="";
+if (isset($_POST['submit'])) {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
 
+if (!empty(trim($username)) && !empty(trim($password))) {
+
+if(login_cek_nama($username)){
+if(cek_data_login($username,$password)){
+  $_SESSION['user'] = $username;
+  header('location: auth/profile.php');
 }else {
-	$errors[] = "Username Salah";
+  $error = "Password Salah";
+}
+}else {
+  $error = "Username Salah";
+}
+}else {
+  $error = "semua harus di isi";
+}
 }
 
-
-
-	}else {
-  $errors = $validation->errors();
-				}
-}
 
  ?>
 
@@ -74,22 +57,18 @@ if ($validation->passed() ) {
 
  <!--SIGN IN-->
 		<div class="login-form-1">
-			<div class="close-2"> </div>
+			
 					<div class="head">
 					</div>
 					<div class="head-info">
 						<h1>SIGN IN</h1>
-						<?php
-            if(!empty($errors)){ ?>
-            <div class="alert alert-danger" role="alert">
-            <?php foreach ($errors as $error): ?>
-              <p><?php echo $error; ?></p> <br>
-            <?php endforeach; ?>
-            </div>
-            <?php  }?>
 						<h2>Welcome back! Nice to see you</h2>
 					</div>
 				<form method="post" action="">
+          <?php if($error){ ?>
+          <div class="alert alert-warning">
+            <strong >Warning!</strong> <?php echo $error; ?></div>
+            <?php } ?>
 					<li>
 						<input type="text" class="text"  name="username" placeholder = "Username" ><a href="#" class=" icon ion-ios-person"></a>
 					</li>
