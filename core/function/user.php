@@ -7,7 +7,8 @@ global $con;
 $username = mysqli_real_escape_string($con,$username);
 $email = mysqli_real_escape_string($con,$email);
 $password = password_hash($password,PASSWORD_DEFAULT);
-  $query = "INSERT INTO users (username,email,password) values ('$username','$email','$password')";
+  $query = "INSERT INTO users (username,email,password,level) values ('$username','$email','$password',0)";
+
   if (mysqli_query($con,$query)  ) {
     return true;
   }else {
@@ -118,6 +119,7 @@ function getprofile($data){
 
 function edit_data($depan,$belakang,$gender,$tlp,$alamat,$users){
   global $con;
+
   $query = "UPDATE profile SET nama_depan = '$depan',nama_belakang = '$belakang',jenis_kelamin ='$gender',no_tlp ='$tlp',alamat='$alamat' WHERE id_users ='$users'";
   $result = mysqli_query($con,$query);
   return $result;
@@ -126,19 +128,55 @@ function edit_data($depan,$belakang,$gender,$tlp,$alamat,$users){
 //masukan data profile
 function input_data($depan,$belakang,$gender,$tlp,$alamat,$users){
   global $con;
-  $query = "INSERT INTO profile (nama_depan,nama_belakang,jenis_kelamin,no_tlp,alamat,id_users) values ('$depan','$belakang','$gender','$tlp','$alamat','$users')";
+  $query = "INSERT INTO profile (nama_depan,nama_belakang,jenis_kelamin,alamat,no_tlp,id_users) values ('$depan','$belakang','$gender','$tlp','$alamat','$users')";
+
   $result = mysqli_query($con,$query);
   return $result;
 
 }
-//masukan avatar
+
+//cek data avatar
+
+function cekavatar($id){
+  global $con;
+  $query = "SELECT * FROM  avatar WHERE id_users = $id";
+  $result = mysqli_query($con,$query);
+  if (mysqli_num_rows($result)>0) {
+    return true;
+  }else {
+    return false;
+  }
+
+}
+
+//update avatar
 function avatar($img,$id){
   global $con;
-  $query = "UPDATE profile SET avatar = '$img' WHERE id_users ='$id'";
+  $query = "UPDATE avatar SET avatar = '$img' WHERE id_users ='$id'";
   $result = mysqli_query($con,$query);
   return $result;
 
 }
+
+//input avatar
+function input_avatar($img,$id){
+  global $con;
+  $query = "INSERT INTO avatar(avatar,id_users) VALUES ('$img',$id)";
+  $result = mysqli_query($con,$query);
+  return $result;
+
+}
+
+//get data avatar
+
+function getavatar($id){
+  global $con;
+  $query = "SELECT avatar FROM avatar WHERE id_users = '$id'";
+  $result = mysqli_query($con,$query);
+  $row = mysqli_fetch_assoc($result);
+  return $row;
+  }
+
 
 
  ?>

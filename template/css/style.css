@@ -77,16 +77,7 @@ background-color: #3273dc;
   border-radius: 5px;
   background-color: #3273dc;
 }
-.size{
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: #FFFFFF;
-  color: black;
-  text-align: center;
-  font-weight: bold;
-  font-size: 32px;
-}
+
 .quantity{
   width: 50px;
   height: 50px;

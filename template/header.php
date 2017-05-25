@@ -8,7 +8,14 @@ if (!isset($_SESSION['user'])) {
   $user = true;
 }
 
-$getproduct = get_data_perproduct();
+if(isset($_SESSION['user'])){
+  $users = $_SESSION['user'];
+
+  $idusers = getidusersforcart($users);
+
+}
+
+  $getproduct = get_data_perproduct();
 
 
  ?>
@@ -49,11 +56,6 @@ $getproduct = get_data_perproduct();
       </div>
 
       <div class="nav-center">
-        <a class="nav-item">
-          <span class="icon">
-            <i class="fa fa-github"></i>
-          </span>
-        </a>
 
         <a class="nav-item" href="#">
           <img src="./template/css/img/logo.png" alt="render">

@@ -41,13 +41,9 @@ function data_perproduct($kode){
 
   function edit_product($kode,$nama,$deskripsi,$harga,$stock,$file){
     global $con;
-    $query = "UPDATE product SET kode_produk ='$kode', nama_produk ='$nama',deskripsi = '$deskripsi',cover = '$file',harga = '$harga' stok ='$stock' WHERE kode_produk = '$kode'";
+    $query = "UPDATE product SET kode_produk ='$kode', nama_produk ='$nama',deskripsi = '$deskripsi',cover = '$file',harga = '$harga', stok ='$stock' WHERE kode_produk = '$kode'";
     $result = mysqli_query($con,$query);
-    if ($result ==$kode or$result ==$nama or$result ==$deskripsi or $result ==$harga or $result ==$stock or $result ==$file ) {
-      return true;
-    }else {
-      return false;
-    }
+    return run($query);
   }
 
 //delete data_perproduct
@@ -57,16 +53,22 @@ function hapus_data($kode){
     return run($query);
 }
 
-//menampilkan product di index
+//   menampilkan product di index
 function get_data_perproduct(){
     $query ="SELECT * FROM product";
     return run($query);
 }
+
+
 //run query
 
 function run($query){
+
   global $con;
   $result = mysqli_query($con,$query);
   return $result;
 }
+
+
+
  ?>

@@ -21,7 +21,12 @@ if(isset($_POST['btn-upload']))
 
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{
-		avatar($final_file,$users['id']);
+		if (cekavatar($users['id'])) {
+			avatar($final_file,$users['id']);
+		}else {
+			input_avatar($final_file,$users['id']);
+		}
+
 		?>
 		<script>
 		alert('successfully uploaded');

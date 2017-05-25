@@ -1,14 +1,20 @@
 <?php
 require_once '../core/init.php';
+
+if (!isset($_SESSION['user'])) {
+header('location: ../login.php');
+}
 $user = $_SESSION['user'];
 $users = cek_id($user);
 
 $profile = getprofile($users['id']);
 
-if ($profile['avatar'] == null) {
+//avatar
+$avatar = getavatar($users['id']);
+if ($avatar['avatar'] == null) {
   $img = "profile.png";
 }else {
-  $img = $profile['avatar'];
+  $img = $avatar['avatar'];
 }
 
 $levels = $users['level'];
@@ -29,6 +35,7 @@ if (cek_profile_data($users['id'])) {
 
     if(edit_data($depan,$belakang,$gender,$tlp,$alamat,$users['id'])){
       $info= "Update data berhasil";
+      header("location:profile.php");
     }else {
       $info = "Maaf ada kesalahan, mohon ulang kembli atau hubingi administrator";
     }
@@ -45,7 +52,7 @@ if (cek_profile_data($users['id'])) {
     if(input_data($depan,$belakang,$gender,$tlp,$alamat,$users['id'])){
       $info= "Input data berhasil";
     }else {
-      $info = "Maaf ada kesalahan, mohon ulang kembali atau hubungi administrator";
+      $info = "Maaf ada kesalahan menambah data, mohon ulang kembali atau hubungi administrator";
     }
   }
 }
@@ -227,7 +234,6 @@ if (cek_profile_data($users['id'])) {
           <div class="dropdown-menu">
             <ul>
               <li class="dropdown-header">Ordering</li>
-              <li class="dropdown-empty">No New Ordered</li>
               <li class="dropdown-footer">
                 <a href="#">View All <i class="fa fa-angle-right" aria-hidden="true"></i></a>
               </li>
